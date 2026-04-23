@@ -12,8 +12,9 @@ except ImportError:
     import PyPDF2
     USE_PDFPLUMBER = False
 
-# ✅ Set correct Tesseract path
-pytesseract.pytesseract.tesseract_cmd = r"E:/terms-summarizer/tesseract/tesseract.exe"
+import sys
+if sys.platform == "win32":
+    pytesseract.pytesseract.tesseract_cmd = r"E:/terms-summarizer/tesseract/tesseract.exe"
 
 
 # 🌐 Extract text from URL
