@@ -1,9 +1,10 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-model_name = "facebook/bart-large-cnn"
+model_name = "sshleifer/distilbart-cnn-12-6"
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+
 
 def clean_summary(text):
     text = text.replace("  ", " ")
@@ -22,9 +23,9 @@ def summarize_text(text):
     inputs["input_ids"],
     max_length=70,
     min_length=20,
-    length_penalty=3.5,   # 🔥 stronger compression
-    num_beams=8,          # 🔥 better search
-    no_repeat_ngram_size=3,  # 🔥 avoids repetition
+    length_penalty=2.0,   # tuned for faster generation
+    num_beams=2,          # 🔥 reduced from 8 to 2 for exponentially faster processing!
+    no_repeat_ngram_size=3, 
     early_stopping=True
 )
 
